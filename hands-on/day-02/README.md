@@ -154,7 +154,7 @@ df.drop("col1", "col2")
 
 ## 6.4 What You Will Do
 
-* Load a CSV dataset from your **mounted Azure Data Lake** (per-student mount, e.g. `/mnt/data-u05`; run 02-Mount-Azure-Data-Lake first).
+* Load a CSV dataset from **Azure Data Lake Storage Gen2** using **ABFS** (`abfss://...`). Run **`02-Mount-Azure-Data-Lake`** once per session (or use `%run` from the main notebook) to set `spark.conf` OAuth and `base_path`.
 * Apply `select`, `filter`, `withColumn`, `drop`.
 * Inspect schema and run actions (`show()`, `count()`).
 
@@ -256,12 +256,12 @@ Refer to labs and notebook **01-Day2-Spark-DataFrames-Transformations** in `note
 
 ---
 
-# Mount Azure Data Lake (for use in later days)
+# Azure Data Lake (ABFS + OAuth — no DBFS mount)
 
-Notebook **02-Mount-Azure-Data-Lake** in `notebooks/` is required for Day 2: it mounts Azure Data Lake Storage Gen2 to a **per-student** path (e.g. `/mnt/data-u05`). Day 2 data paths use only this mount; run it before 01-Day2-Spark-DataFrames-Transformations.
+Notebook **02-Mount-Azure-Data-Lake** in `notebooks/` configures **OAuth on `spark.conf`** and sets **`base_path`** as an **ABFSS** URI (`abfss://<container>@<account>.dfs.core.windows.net/data`). **We do not use `dbutils.fs.mount` or File Store** for Day 2 data. The main notebook uses **`%run ./02-Mount-Azure-Data-Lake`** then sets `BASE_PATH` and `OUTPUT_PATH`.
 
 * **Prerequisites:** ADLS Gen2 account, container, Service Principal with access to the container.
-* **Notebook:** Step-by-step cells for account details, SP credentials (or secrets), mount config, and verify. See Lab 6 in labs.md.
+* **Notebook:** Storage account, container, Service Principal credentials, OAuth `spark.conf` keys, optional smoke read. See Lab 6 in labs.md.
 
 ---
 

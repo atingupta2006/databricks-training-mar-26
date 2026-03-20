@@ -26,7 +26,7 @@ Use your assigned ID everywhere you create a folder or cluster for Day 2.
 
 ## Objective
 
-Create Day 2 folder and cluster, and set up the data path using your **mounted Azure Data Lake** (per-student mount from 02-Mount-Azure-Data-Lake).
+Create Day 2 folder and cluster, and set up the data path using **ADLS Gen2 over ABFS** (OAuth via `spark.conf`, same pattern as Day 1 — notebook **02-Mount-Azure-Data-Lake**).
 
 ---
 
@@ -51,11 +51,12 @@ Create Day 2 folder and cluster, and set up the data path using your **mounted A
 
 ---
 
-## Task 3 — Set Data Path (mount only)
+## Task 3 — Set Data Path (ABFS + `%run`)
 
-1. Data for Day 2 comes from your **mounted Azure Data Lake**. Complete **02-Mount-Azure-Data-Lake** first so your per-student mount (e.g. `/mnt/data-u05`) exists. Ensure flight data is available under that mount (e.g. `.../data/flight-data/json/2015-summary.json`).
-2. In **01-Day2-Spark-DataFrames-Transformations**, set **student_id** to match 02-Mount-Azure-Data-Lake (e.g. `"u05"`), then run the first **code cell** (BASE_PATH and flightDataJson2015 use your mount path).
-3. Work through the notebook in order (Structured APIs, DataFrames, schema, select/filter/withColumn/drop, expressions, and optional RDD/repartition/caching sections).
+1. Upload or sync lab data to your ADLS container under **`data/`** (same layout as Day 1): `data/json/2015-summary.json`, `data/2010-summary.csv`.
+2. In **02-Mount-Azure-Data-Lake**, set **adlsAccountName**, **containerName**, **tenant_id**, **client_id**, and **client_secret** (or secrets), then run all cells to configure OAuth and `base_path`.
+3. Open **01-Day2-Spark-DataFrames-Transformations**, run **`%run ./02-Mount-Azure-Data-Lake`**, then run the **paths** cell (`BASE_PATH`, `OUTPUT_PATH`, and file variables). Writes go to `.../data/OUTPUT/...` on ADLS.
+4. Work through the notebook in order (Structured APIs, DataFrames, schema, select/filter/withColumn/drop, expressions, and optional RDD/repartition/caching sections).
 
 ---
 
@@ -79,7 +80,7 @@ Load CSV data and apply core transformations: select, filter, withColumn, drop.
 In a new cell:
 
 ```python
-csv_path = BASE_PATH + "/csv/2010-summary.csv"
+csv_path = BASE_PATH + "/2010-summary.csv"
 df = spark.read.option("header", True).option("inferSchema", True).csv(csv_path)
 df.printSchema()
 df.show(5)
@@ -254,29 +255,29 @@ df.fillna(0, subset=["count"]).show(3)
 
 ---
 
-# Lab 6 — Mount Azure Data Lake (Optional — for using DBFS mount going forward)
+# Lab 6 — Azure Data Lake via ABFS (OAuth on `spark.conf`)
 
 ## Objective
 
-Mount an Azure Data Lake Storage Gen2 container so you can use DBFS paths in later days. **Each student uses a separate mount point** (e.g. `/mnt/data-u05`).
+Configure **Spark** to read/write **Azure Data Lake Storage Gen2** using **ABFSS** URIs and **OAuth** (Service Principal) on **`spark.conf`**. **No `dbutils.fs.mount`** — same approach as Day 1.
 
 ---
 
 ## Tasks
 
-1. Open the notebook **02-Mount-Azure-Data-Lake** in `notebooks/`.
-2. In **Step 1**, set **student_id** to your assigned ID (e.g. `"u05"`). Your mount point will be `/mnt/data-<student_id>`.
-3. Set **adlsAccountName**, **adlsContainerName**; set **applicationId**, **authenticationKey**, **tenandId** (prefer Databricks secrets — see notebook).
-4. Run all cells: build endpoint and source, configs, mount to `/mnt/data-<student_id>`, then verify (the notebook lists your mount point).
-5. In later notebooks use **your** path, e.g. `dbfs:/mnt/data-u05/your-folder/` (replace `u05` with your student_id).
+1. Open **02-Mount-Azure-Data-Lake** in `notebooks/`.
+2. Set **adlsAccountName**, **containerName**, **tenant_id**, **client_id**, and **client_secret** (use Databricks **secrets** in production).
+3. Run all cells: OAuth keys on `spark.conf`, **`base_path`** = `abfss://<container>@<account>.dfs.core.windows.net/data`, optional CSV smoke read.
+4. In **01-Day2-Spark-DataFrames-Transformations**, use **`%run ./02-Mount-Azure-Data-Lake`** so every session picks up the same configuration.
+5. Use paths like **`BASE_PATH + "/json/2015-summary.json"`** and **`OUTPUT_PATH + "/..."`** for writes under `data/OUTPUT/`.
 
 ---
 
 ## Success Criteria
 
-* Mount completes without error.
-* Verify step shows the contents of your container at your mount point (e.g. `/mnt/data-u05`).
-* You can use your mount path in other notebooks (on the same cluster).
+* OAuth cells run without error; **`base_path`** prints a valid **abfss://** URI.
+* Optional verify read shows rows from **`2010-summary.csv`**.
+* Main Day 2 notebook reads JSON/CSV/Parquet from **ABFS** and can write examples to **OUTPUT** on ADLS.
 
 ---
 
