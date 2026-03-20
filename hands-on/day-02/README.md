@@ -79,7 +79,7 @@ Your instructor will assign your ID. Use it in every folder and cluster name for
 ## 6.1 DataFrame Basics
 
 * **DataFrame:** Distributed collection of rows with a named schema (like a table).
-* **Creating:** From files (CSV, JSON, Parquet), from existing RDDs, or with `spark.createDataFrame()` from local data.
+* **Creating:** From files (CSV, JSON, Parquet), or with `spark.createDataFrame()` from in-memory rows (prefer Structured APIs over RDDs on current Databricks runtimes).
 
 ### Reading Files
 

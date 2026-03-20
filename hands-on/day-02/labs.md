@@ -56,7 +56,7 @@ Create Day 2 folder and cluster, and set up the data path using **ADLS Gen2 over
 1. Upload or sync lab data to your ADLS container under **`data/`** (same layout as Day 1): `data/json/2015-summary.json`, `data/2010-summary.csv`.
 2. In **02-Mount-Azure-Data-Lake**, set **adlsAccountName**, **containerName**, **tenant_id**, **client_id**, and **client_secret** (or secrets), then run all cells to configure OAuth and `base_path`.
 3. Open **01-Day2-Spark-DataFrames-Transformations**, run **`%run ./02-Mount-Azure-Data-Lake`**, then run the **paths** cell (`BASE_PATH`, `OUTPUT_PATH`, and file variables). Writes go to `.../data/OUTPUT/...` on ADLS.
-4. Work through the notebook in order (Structured APIs, DataFrames, schema, select/filter/withColumn/drop, expressions, and optional RDD/repartition/caching sections).
+4. Work through the notebook in order (Structured APIs, DataFrames, schema, select/filter/withColumn/drop, expressions, and optional partitioning/repartition/caching sections).
 
 ---
 
