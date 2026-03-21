@@ -160,14 +160,15 @@ Recommended metadata columns:
 Example:
 
 ```python
-from pyspark.sql.functions import current_timestamp, input_file_name
+from pyspark.sql.functions import coalesce, col, current_timestamp, lit
 
+# Unity Catalog: use _metadata.file_path (not input_file_name). Optional: coalesce with lit(path).
 bronze_df = (spark.read.format("csv")
              .option("header", True)
              .option("inferSchema", True)
              .load(input_path)
              .withColumn("ingestion_ts", current_timestamp())
-             .withColumn("source_file", input_file_name()))
+             .withColumn("source_file", coalesce(col("_metadata.file_path"), lit(input_path))))
 
 bronze_df.write.format("delta").mode("append").save(bronze_path)
 ```
