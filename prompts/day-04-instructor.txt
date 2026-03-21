@@ -1,5 +1,0 @@
-Day 4 — Instructor guide generation prompt (reference)
-
-Cover: UC prerequisites, why views vs external tables for shared training storage, main vs dedicated catalog, SHOW GRANTS demo as admin, lineage UI expectations, pitfalls (CREATE SCHEMA denied, missing Day 3 data).
-
-Notebooks: hands-on/day-04/notebooks/01-Day4-Unity-Catalog-Fundamentals.ipynb, 03-Day4-Unity-Catalog-Security-Lineage.ipynb, labs.md, instructor-README.md.

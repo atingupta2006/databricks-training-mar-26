@@ -42,6 +42,4 @@ All lesson notebooks that read or write **ADLS Gen2** use the **same pattern**:
 
 ---
 
-## Maintainer notes
-
-See **`docs/content-validation.md`** for JSON checks and ABFS consistency rules.
+Course maintainers: see **`docs/README.md`** (optional local workflows are not committed; `.local-maintainer/` is gitignored).
