@@ -12,12 +12,25 @@ print('OK: ipynb JSON')"
 
 # Python helpers
 python -m py_compile internal/build_day03_notebooks.py
+python -m py_compile internal/build_day05_notebooks.py
 ```
 
 Regenerate Day 3 notebooks after editing `internal/build_day03_notebooks.py`:
 
 ```bash
 python internal/build_day03_notebooks.py
+```
+
+Regenerate Day 4 notebooks after editing `internal/build_day04_notebooks.py`:
+
+```bash
+python internal/build_day04_notebooks.py
+```
+
+Regenerate Day 5 notebooks after editing `internal/build_day05_notebooks.py`:
+
+```bash
+python internal/build_day05_notebooks.py
 ```
 
 ## Consistency rules (this repo)

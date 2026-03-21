@@ -241,6 +241,8 @@ AS SELECT * FROM sales_silver
 
 ## Day 4 — Unity Catalog Governance (5 Hours)
 
+**Hands-on:** `hands-on/day-04/` — notebooks, `README.md`, `labs.md`. Regenerate notebooks: `python internal/build_day04_notebooks.py`.
+
 ### 11. Unity Catalog Fundamentals (2 hours)
 
 **What is Unity Catalog**
@@ -301,6 +303,8 @@ AS SELECT * FROM sales_silver
 ---
 
 ## Day 5 — Delta Lake Fundamentals (4 Hours)
+
+**Hands-on:** `hands-on/day-05/` — notebooks, `README.md`, `labs.md`. Regenerate notebooks: `python internal/build_day05_notebooks.py`.
 
 ### 15. Delta Lake Architecture (1.5 hours)
 

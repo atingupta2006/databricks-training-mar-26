@@ -1,6 +1,6 @@
 # Hands-on labs — Databricks course
 
-Each **day** folder has `README.md` (student theory), `labs.md` (tasks), optional `instructor-README.md`, and `notebooks/`.
+Each **day** folder has `README.md`, `labs.md`, and `notebooks/`. Some days also include extra facilitator-only notes in the same folder for people running the class.
 
 ---
 
@@ -28,8 +28,17 @@ All lesson notebooks that read or write **ADLS Gen2** use the **same pattern**:
 | 2 | `day-02/notebooks/01-Day2-Spark-DataFrames-Transformations.ipynb` | Yes |
 | 3 | `day-03/notebooks/01-Day3-Medallion-Bronze-Silver-Gold.ipynb` | Yes |
 | 3 | `day-03/notebooks/03-Day3-Delta-Lake-Advanced.ipynb` | Yes |
+| 4 | `day-04/notebooks/01-Day4-Unity-Catalog-Fundamentals.ipynb` | Yes |
+| 4 | `day-04/notebooks/03-Day4-Unity-Catalog-Security-Lineage.ipynb` | Yes |
+| 5 | `day-05/notebooks/01-Day5-Delta-Lake-Architecture-and-Basics.ipynb` | Yes |
+| 5 | `day-05/notebooks/03-Day5-Delta-History-Optimize-Advanced.ipynb` | Yes |
+| 5 | `day-05/notebooks/04-Day5-Delta-DML-MERGE-SCD.ipynb` | Yes |
 
 `02-Mount-Azure-Data-Lake.ipynb` itself is the **configuration** notebook; it does not `%run` anything else.
+
+**Day 4** hands-on folder: **`hands-on/day-04/`** (Unity Catalog — requires UC-enabled workspace; see **`docs/unity-catalog-enabled-workspace-setup.md`**).
+
+**Day 5** hands-on folder: **`hands-on/day-05/`** (extended Delta Lake on ABFS; regenerate: **`python internal/build_day05_notebooks.py`**).
 
 ---
 

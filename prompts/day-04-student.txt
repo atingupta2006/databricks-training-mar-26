@@ -1,0 +1,9 @@
+Day 4 — Student handout generation prompt (reference)
+
+Theme: Unity Catalog governance — catalog.schema.table, CREATE SCHEMA, CREATE VIEW over delta.`abfss://...` (Day 3 paths), SHOW/DESCRIBE, GRANT/REVOKE templates, lineage via Catalog Explorer.
+
+Constraints:
+- Same ADLS pattern as Days 1–3: %run ./02-Mount-Azure-Data-Lake, base_path under abfss://.../data
+- Use views (not duplicate EXTERNAL TABLE on same LOCATION) when class shares one ADLS copy
+- STUDENT_ID u01–u16 for schema main.day04_uXX_lab
+- Link docs/unity-catalog-enabled-workspace-setup.md for UC enablement

@@ -1,0 +1,9 @@
+Day 5 — Instructor prompt (reference)
+
+Theme: Extended Delta Lake delivery — long notebook 01 (skill builders + replaceWhere + quality), notebook 03 (time travel, DeltaTable API, OPTIMIZE/ZORDER, clone/VACUUM/CDF theory), notebook 04 (MERGE variants, staging path, DeltaTable update/delete, SCD).
+
+Pacing: 4h base; mark Parts P–Q and nb03 Section 10 as homework if needed.
+
+Solutions: hands-on/day-05/instructor-README.md (Part J + pitfalls).
+
+Safety: VACUUM and destructive DELETE only with personal paths / admin approval.
