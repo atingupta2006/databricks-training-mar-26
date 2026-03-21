@@ -1,0 +1,5 @@
+Day 3 — Instructor guide generation prompt (reference)
+
+Cover: timing, prerequisites (Days 1–2 ABFS pattern), notebook order 02 → 01 → 03, demo script, pitfalls (empty client_secret, Silver missing before advanced notebook), expected row-count relationships, MERGE + history narrative, VACUUM caution.
+
+Reference notebooks in hands-on/day-03/notebooks/ and labs.md. External databricks folder: map concepts to 08-Reading Writing to Delta Tables style but keep ABFSS paths.

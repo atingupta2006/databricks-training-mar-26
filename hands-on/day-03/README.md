@@ -6,6 +6,30 @@
 
 ---
 
+## Notebooks (`notebooks/`)
+
+Run in this order:
+
+1. **`02-Mount-Azure-Data-Lake.ipynb`** — Sets **`spark.conf` OAuth** and **`base_path`** (ABFS). Same notebook as Day 1 / Day 2.
+2. **`01-Day3-Medallion-Bronze-Silver-Gold.ipynb`** — Main lab: **Bronze → Silver → Gold** Delta pipeline, validation, SQL over Delta.
+3. **`03-Day3-Delta-Lake-Advanced.ipynb`** — **Table history**, **time travel**, **`MERGE`**, **schema evolution**, **`OPTIMIZE`**, **`VACUUM`** discussion.
+
+Tip: Notebook **01** starts with **`%run ./02-Mount-Azure-Data-Lake`** so you can skip opening **02** separately if you prefer.
+
+**Course-wide rule:** See **`hands-on/README.md`** — every ADLS lesson notebook uses **`%run ./02-Mount-Azure-Data-Lake`** (same folder as **`02-Mount-...ipynb`**) so **`spark.conf`** and **`base_path`** are always loaded before reads.
+
+Hands-on steps are also broken down in **`labs.md`**. Instructor pacing: **`instructor-README.md`**.
+
+### Courseware alignment (external reference)
+
+Under **`C:\25-Trainings\2-Confirmed\260317-Vinsys-Databricks\databricks\`**, the Day 3 notebooks mirror patterns from these **top matches** (paths adapted to **ABFS**):
+
+1. **`azure-databricks-tata-technologies-main\Labs\08-Reading Writing to Delta Tables.ipynb`** — Delta I/O, `DeltaTable`, `partitionBy`, MERGE/SQL.
+2. **`azure-databricks-tata-technologies-main\Labs\09-DeltaTableVersioning.ipynb`** — history, `versionAsOf` / `timestampAsOf`, delete/restore ideas.
+3. **`azure-databricks-tata-technologies-main\Labs\01-Databricks-datalake-spark.ipynb`** — lake-style reads, SQL vs DataFrame, `explain()`.
+
+---
+
 ## Databricks Account — Student ID
 
 All students use the **same Databricks account**. Use your **student ID** (u01–u16) as a suffix so resources do not conflict:

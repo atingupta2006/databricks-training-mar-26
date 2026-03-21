@@ -87,13 +87,15 @@ Create a cluster, explore the workspace UI, and attach a notebook.
 
 ---
 
-## Task 6 — Upload Data to File Store (Day 1 uses File Store only; no mount)
+## Task 6 — Load data from ADLS (ABFS — same pattern as Days 2–3)
 
-1. Get the course data from the repo folder **`data/flight-data/`** (at the root of the repository). It contains:
+1. Get the course data from the repo folder **`data/flight-data/`**. It contains:
    * `csv/2010-summary.csv` and `csv/2015-summary.csv`
    * `json/2015-summary.json`
-2. In Databricks: **Data** → **Add Data** → **Upload File**. Upload the files and place them under a path such as `/FileStore/day01/flight-data/csv/` and `.../json/` (create folders as needed in File Store).
-3. In the notebook, set **`BASE_PATH`** in the “Upload data to File Store” section to match your path (e.g. `BASE_PATH = "/FileStore/day01/flight-data"`).
+2. Upload into **ADLS Gen2** under your container’s **`data/`** folder so the layout matches the notebooks:
+   * **`data/2010-summary.csv`** (copy from `csv/2010-summary.csv` if you use the Day 1–3 standard layout)
+   * **`data/json/2015-summary.json`**
+3. Open **`02-Mount-Azure-Data-Lake.ipynb`**, set **Service Principal** / storage details, run all cells (or use **`%run ./02-Mount-Azure-Data-Lake`** from the main notebook).
 
 ---
 
@@ -101,7 +103,7 @@ Create a cluster, explore the workspace UI, and attach a notebook.
 
 1. Open the notebook **01-Day1-Foundations-PySpark-SQL-Widgets** (or import it from the course `notebooks/` folder).
 2. Attach it to your cluster `day01-cluster-uXX`.
-3. Run the **Day 1 intro** and **Upload data to File Store** cells (set `BASE_PATH`, then run the cell that creates Parquet from CSV).
+3. Run **`%run ./02-Mount-Azure-Data-Lake`**, then the **paths** cell (`BASE_PATH`, `OUTPUT_PATH`, `flight_data_json`). Run the cell that **creates Parquet from CSV** (under `BASE_PATH`) when you reach that section.
 4. Run the **DataFrames** section cells (schema, JSON/Parquet/CSV read/write, infer schema, explicit schema).
 
 ---

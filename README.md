@@ -20,6 +20,14 @@ A structured 9-day Databricks training covering Lakehouse architecture, Spark, M
 
 ---
 
+## Platform documentation (setup)
+
+* **[Unity Catalog–enabled Databricks workspace](docs/unity-catalog-enabled-workspace-setup.md)** — step-by-step guide (Azure-first): metastore, workspace assignment, external locations, grants, verification, troubleshooting.
+* **[Content validation checklist](docs/content-validation.md)** — JSON/syntax checks and ABFS consistency rules for maintainers.
+* **[Hands-on folder — ADLS connection (`%run` mount notebook)](hands-on/README.md)** — every lesson notebook calls **`02-Mount-Azure-Data-Lake`** for `spark.conf` + `base_path`.
+
+---
+
 ## Day 1 — Foundations & Workspace (5 Hours)
 
 ### 1. Introduction to Databricks & Lakehouse (1.5 hours)

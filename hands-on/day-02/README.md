@@ -6,6 +6,12 @@
 
 ---
 
+## Hands-on notebooks — connect to ADLS first
+
+**`notebooks/01-Day2-Spark-DataFrames-Transformations.ipynb`** starts with **`%run ./02-Mount-Azure-Data-Lake`** (then the paths cell). Same pattern as Day 1; see **`hands-on/README.md`**.
+
+---
+
 ## Databricks Account — Student ID
 
 All students use the **same Databricks account**. Use your **student ID** (u01–u16) as a suffix so resources do not conflict:

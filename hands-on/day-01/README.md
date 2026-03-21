@@ -6,6 +6,12 @@
 
 ---
 
+## Hands-on notebooks — connect to ADLS first
+
+The lab notebook **`notebooks/01-Day1-Foundations-PySpark-SQL-Widgets.ipynb`** always begins with **`%run ./02-Mount-Azure-Data-Lake`** so **`spark.conf` OAuth** and **`base_path`** are set. Keep **`02-Mount-Azure-Data-Lake.ipynb`** in the **same Databricks folder**. See **`hands-on/README.md`** for the full course rule and restart behavior.
+
+---
+
 ## Databricks Account — Student ID
 
 All students use the **same Databricks account**. Use your **student ID** (u01–u16) as a suffix so resources do not conflict:
@@ -374,7 +380,7 @@ Lakehouse combines:
 * Create notebook **01-Day1-Foundations-PySpark-SQL-Widgets** (see labs)
 * Create cluster `day01-cluster-uXX` (use your student ID)
 * Attach cluster
-* **Upload Day 1 data** from the repo **`data/flight-data/`** to Databricks File Store (Day 1 uses File Store only; mounting is in Day 2)
+* **Upload Day 1 data** from the repo **`data/flight-data/`** to **ADLS Gen2** under **`data/`** (e.g. `data/json/2015-summary.json`, `data/2010-summary.csv` — same layout as Days 2–3). In the notebook, run **`%run ./02-Mount-Azure-Data-Lake`** and set paths from **`base_path`** (**ABFS**; no File Store / DBFS mount for lab data)
 * Run first command
 
 Refer to labs for steps.
