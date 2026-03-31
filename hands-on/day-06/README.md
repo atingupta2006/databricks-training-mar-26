@@ -1,65 +1,37 @@
 # Day 06 — Delta Advanced Features
 
 ## Duration
-4 hours
 
-## Modules
-(17) Time Travel & Table History — transaction history, DESCRIBE HISTORY, query previous versions, VERSION AS OF, TIMESTAMP AS OF; hands-on query historical data.  
-(18) Delta Performance Optimization — small files problem, OPTIMIZE, ZORDER, liquid clustering, data skipping; hands-on optimize tables.
+4 hours (matches items 17 and 18 in the course `README.md`).
 
-## Shared Databricks Account
-- **Account**: Shared Databricks Account — Student ID
-- **IDs**: u01–u16
-- **Folder**: `day06-uXX`
-- **Cluster**: `day06-cluster-uXX`
+## What to run
 
-## Notebooks
-1. [01-Day6-Time-Travel-and-Table-History.ipynb](notebooks/01-Day6-Time-Travel-and-Table-History.ipynb) — Time Travel and Change Data Capture (CDC) - Hands-on Labs
-2. [02-Day6-Delta-Performance-Optimization.ipynb](notebooks/02-Day6-Delta-Performance-Optimization.ipynb) — Advanced Delta Table Optimizations and Constraints - Hands-on Labs
-3. [03-Day6-Optimizing-Storage-and-Compute.ipynb](notebooks/03-Day6-Optimizing-Storage-and-Compute.ipynb) — Optimizing Storage and Compute Costs
-4. [04-Day6-Adaptive-Query-Execution.ipynb](notebooks/04-Day6-Adaptive-Query-Execution.ipynb) — Adaptive Query Execution (AQE)
-5. [05-Day6-Managing-Shuffles-and-Joins.ipynb](notebooks/05-Day6-Managing-Shuffles-and-Joins.ipynb) — Managing Shuffles and Broadcast Joins
-6. [06-Day6-Performance-PySpark.ipynb](notebooks/06-Day6-Performance-PySpark.ipynb) — Performance PySpark
-7. [07-Day6-Spark-Performance-Tuning-Joins.ipynb](notebooks/07-Day6-Spark-Performance-Tuning-Joins.ipynb) — Spark Performance Tuning Joins
-8. [08-Day6-Delta-Table-Versioning.ipynb](notebooks/08-Day6-Delta-Table-Versioning.ipynb) — DeltaTableVersioning
+| Item | Subject | Time (guide) | Notebook |
+|------|---------|--------------|----------|
+| 17 | Time travel and table history | ~1.5 h | [01-Day6-Time-Travel-and-Table-History.ipynb](notebooks/01-Day6-Time-Travel-and-Table-History.ipynb) |
+| 18 | Delta performance: small files, OPTIMIZE, ZORDER, liquid clustering, data skipping | ~2.5 h | [02-Day6-Delta-Performance-Optimization.ipynb](notebooks/02-Day6-Delta-Performance-Optimization.ipynb) |
+
+Items 17 and 18 are covered with notebooks **01** and **02**.
+
+## Other files
+
+- [03-Day6-Optional-5min-Teaser.ipynb](notebooks/03-Day6-Optional-5min-Teaser.ipynb) — short Spark notes (AQE, broadcast hint). Not part of items 17–18.
+- [notebooks/_archive/](notebooks/_archive/) — older notebooks (storage cost, AQE labs, joins, etc.). See [_archive/README.md](notebooks/_archive/README.md).
+
+Notebook **01** includes a batch MERGE exercise (same family of operations as Day 5). Streaming and change data feed are on Day 7 (item 19).
 
 ## Prerequisites
-- Complete Day 5 notebooks
-- Azure Data Lake Storage mount configured
-- Basic Delta Lake knowledge
 
-## Labs Overview
-### Time Travel & Table History
-- Implement Time Travel to access historical data versions
-- Restore data to previous states using Delta Lake
-- Track and process changes using CDC techniques
-- Use Structured Streaming for real-time CDC pipelines
+- Day 5 notebook 01 completed so `P_BASIC` exists at `.../day5/delta/flight_summary_basic`.
+- ABFS access as in earlier days (paths are set in the first code cell: `BASE_PATH`, `DAY6_PREFIX`).
 
-### Delta Performance Optimization
-- Performance tuning using Z-Ordering, Partitioning, and Data Skipping
-- Implementing Constraints (Primary Keys, NOT NULL, Check Constraints)
-- Compaction techniques (OPTIMIZE) and Storage Retention (VACUUM)
-- Indexing methods like Bloom Filters and Delta Caching
-- Adaptive Query Execution (AQE)
-- Managing Shuffles and Broadcast Joins
+## Checklist
 
-## Key Concepts
-- **Time Travel**: Query historical versions with VERSION AS OF / TIMESTAMP AS OF
-- **DESCRIBE HISTORY**: View transaction log and changes
-- **OPTIMIZE**: Compact small files and improve performance
-- **ZORDER**: Cluster data for better query performance
-- **Constraints**: Enforce data quality with CHECK constraints
-- **AQE**: Dynamic query optimization at runtime
-- **Broadcast Joins**: Optimize small table joins
+- Time travel and history behave as expected on the lab path.
+- OPTIMIZE (with ZORDER if you use it) completes.
 
-## Validation Steps
-- Verify Time Travel queries return correct historical data
-- Check OPTIMIZE reduces file count and improves query speed
-- Confirm constraints prevent invalid data insertion
-- Monitor AQE plan changes in query execution
+Step-by-step notes: [labs.md](labs.md).
 
-## Troubleshooting
-- Ensure CDF enabled for change data feed
-- Check table history for version availability
-- Verify OPTIMIZE completes without errors
-- Monitor cluster resources during performance tests
+## Before you teach
+
+Run **01** and **02** once on the workspace and cluster you will use in class, with your real `STUDENT_ID` and storage account.

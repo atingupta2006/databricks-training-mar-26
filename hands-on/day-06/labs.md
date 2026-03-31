@@ -1,214 +1,98 @@
 # Day 06 — Delta Advanced Features — Labs
 
-## Shared Databricks Account
-- **Account**: Shared Databricks Account — Use Your Student ID
-- **Student IDs**: u01–u16
-- **Workspace Folder**: `day06-uXX` (replace XX with your student ID)
-- **Cluster**: `day06-cluster-uXX` (pre-configured for each student)
+Aligned with Day 6 in the course outline (items 17 and 18).
 
-## Lab 1: Time Travel and Table History
+If you are short on time: finish **01** through Lab 2, and **02** through Lab 1. Labs marked optional can wait.
 
-### Objective
-Learn to query historical versions of Delta tables using Time Travel and explore transaction history.
+---
 
-### Prerequisites
-- Day 5 notebooks completed
-- Azure Data Lake Storage mount configured
+## Paths
 
-### Tasks
-
-#### Task 1.1: Setup and Initial Data Load
-1. Open `01-Day6-Time-Travel-and-Table-History.ipynb`
-2. Update `STUDENT_ID` to your assigned ID (u01-u16)
-3. Run the prerequisite check to ensure Day 5 tables exist
-4. Create a transactions table with sample data
+First cell in each notebook:
 
 ```python
-# Expected code structure
+BASE_PATH = "abfss://atininput@sadbtrng19032026.dfs.core.windows.net/data/"
+STUDENT_ID = "u25"  # your assigned id
+DAY5 = BASE_PATH + "/day5"
+P_BASIC = DAY5 + "/delta/flight_summary_basic"
+DAY6_PREFIX = f"{BASE_PATH}day06-{STUDENT_ID}"
+```
+
+You need `P_BASIC` from Day 5 notebook 01. Day 6 writes under `day06-{STUDENT_ID}`.
+
+---
+
+## Lab 1: Time travel (item 17)
+
+**Notebook:** `01-Day6-Time-Travel-and-Table-History.ipynb`
+
+**Goal:** Use table history and read older versions (`versionAsOf` / `timestampAsOf`, or SQL `VERSION AS OF` / `TIMESTAMP AS OF`).
+
+### Task 1.1: Setup
+
+1. Set `STUDENT_ID`, run the prerequisite check.
+2. Create a small Delta table under `DAY6_PREFIX`.
+
+```python
 data = [(101, 5000, "2024-02-01"), (102, 7000, "2024-02-02"), (103, 4500, "2024-02-03")]
 columns = ["transaction_id", "amount", "transaction_date"]
 df = spark.createDataFrame(data, columns)
-df.write.format("delta").mode("overwrite").save(f"abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/transactions")
+df.write.format("delta").mode("overwrite").save(f"{DAY6_PREFIX}/transactions")
 ```
 
-**Success Criteria**: Table created successfully with 3 records.
+### Task 1.2: History
 
-#### Task 1.2: Update Data and Check History
-1. Update a transaction record
-2. Run `DESCRIBE HISTORY` to view transaction log
+Update or append, then `DESCRIBE HISTORY` on the path.
 
-```python
-from delta.tables import DeltaTable
+### Task 1.3: Time travel
 
-delta_table = DeltaTable.forPath(spark, f"abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/transactions")
-delta_table.update("transaction_id = 101", {"amount": "6000"})
+Read a known older version; optionally use a timestamp.
 
-# Check history
-spark.sql(f"DESCRIBE HISTORY delta.`abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/transactions`").show()
-```
+### Task 1.4: Restore
 
-**Success Criteria**: History shows 2 versions (0 and 1).
+Use `restoreToVersion` if you cover it in the slides.
 
-#### Task 1.3: Time Travel Queries
-1. Query the original version (version 0)
-2. Query using timestamp
+Change data feed and streaming belong on Day 7 (item 19).
 
-```python
-# Query version 0
-original_df = spark.read.format("delta").option("versionAsOf", 0).load(f"abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/transactions")
-original_df.show()
+---
 
-# Query using timestamp (adjust timestamp as needed)
-timestamp_df = spark.read.format("delta").option("timestampAsOf", "2024-01-01 00:00:00").load(f"abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/transactions")
-timestamp_df.show()
-```
+## Lab 2: Delta performance (item 18)
 
-**Success Criteria**: Original data shows amount 5000 for transaction 101.
+**Notebook:** `02-Day6-Delta-Performance-Optimization.ipynb`
 
-#### Task 1.4: Restore to Previous Version
-1. Restore the table to version 0
-2. Verify the restoration
+**Goal:** OPTIMIZE and ZORDER; liquid clustering and data skipping in lecture.
 
-```python
-delta_table.restoreToVersion(0)
+### Core
 
-# Verify
-restored_df = spark.read.format("delta").load(f"abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/transactions")
-restored_df.show()
-```
+Create sample Delta data, run `OPTIMIZE ... ZORDER BY`, inspect the plan (`EXPLAIN`).
 
-**Success Criteria**: Data restored to original values.
+### Optional in the same notebook
 
-## Lab 2: Delta Performance Optimization
+Partitioned `loan_foreclosures`, CHECK constraint, VACUUM, Bloom table property. Omit if you stay on the minimum outline.
 
-### Objective
-Optimize Delta tables for better query performance using OPTIMIZE, ZORDER, and constraints.
+---
 
-### Tasks
+## Lab 3: Extra (not in items 17–18)
 
-#### Task 2.1: Z-Ordering for Query Performance
-1. Open `02-Day6-Delta-Performance-Optimization.ipynb`
-2. Create a bank transactions table
-3. Apply Z-Ordering on customer_id
+1. [03-Day6-Optional-5min-Teaser.ipynb](notebooks/03-Day6-Optional-5min-Teaser.ipynb)
+2. [notebooks/_archive/](notebooks/_archive/) — older long labs
 
-```python
-# Create table with sample data
-data = [(101, "C001", 5000, "2024-01-01"), (102, "C002", 7000, "2024-01-02")]
-columns = ["transaction_id", "customer_id", "amount", "transaction_date"]
-df = spark.createDataFrame(data, columns)
-df.write.format("delta").mode("overwrite").save(f"abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/bank_transactions")
+---
 
-# Apply Z-Ordering
-spark.sql(f"OPTIMIZE delta.`abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/bank_transactions` ZORDER BY (customer_id)")
-```
+## Validation
 
-**Success Criteria**: OPTIMIZE command completes successfully.
+- Item 17: history and time travel work on student paths.
+- Item 18: OPTIMIZE (and ZORDER if used) completes.
 
-#### Task 2.2: Add Constraints
-1. Add a check constraint to ensure amount >= 0
+## Common problems
 
-```python
-spark.sql(f"ALTER TABLE delta.`abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/bank_transactions` ADD CONSTRAINT amt_nonneg CHECK (amount >= 0)")
-```
+- Wrong `STUDENT_ID` or missing `P_BASIC`.
+- No write permission to `DAY6_PREFIX`.
+- Wrong version id — use `DESCRIBE HISTORY` first.
 
-**Success Criteria**: Constraint added without errors.
+## References
 
-#### Task 2.3: Test Constraint Validation
-1. Try to insert invalid data (negative amount)
-2. Verify the constraint prevents invalid data
-
-```python
-# This should fail
-try:
-    invalid_df = spark.createDataFrame([(104, "C003", -1000, "2024-01-04")], columns)
-    invalid_df.write.format("delta").mode("append").save(f"abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/bank_transactions")
-except Exception as e:
-    print(f"Expected error: {e}")
-```
-
-**Success Criteria**: Insert fails with constraint violation error.
-
-#### Task 2.4: Partitioned Tables
-1. Create a partitioned table for loan data
-2. Load data and verify partitioning
-
-```python
-spark.sql(f"""
-CREATE TABLE loan_foreclosures (
-    loan_id STRING,
-    customer_id STRING,
-    outstanding_balance DOUBLE,
-    foreclosure_date DATE
-) USING DELTA
-PARTITIONED BY (foreclosure_date)
-LOCATION 'abfss://shared@dbstorage.dfs.core.windows.net/day06-u{STUDENT_ID}/loan_foreclosures'
-""")
-
-# Insert sample data
-loan_data = [("L001", "C001", 100000.0, "2024-01-01")]
-loan_df = spark.createDataFrame(loan_data, ["loan_id", "customer_id", "outstanding_balance", "foreclosure_date"])
-loan_df.write.insertInto("loan_foreclosures")
-```
-
-**Success Criteria**: Data inserted and partitioned correctly.
-
-## Lab 3: Advanced Performance Tuning
-
-### Objective
-Explore additional optimization techniques including AQE, broadcast joins, and storage optimization.
-
-### Tasks
-
-#### Task 3.1: Adaptive Query Execution
-1. Open `04-Day6-Adaptive-Query-Execution.ipynb`
-2. Enable AQE and observe query plan changes
-
-```python
-spark.conf.set("spark.sql.adaptive.enabled", "true")
-spark.conf.set("spark.sql.adaptive.coalescePartitions.enabled", "true")
-```
-
-**Success Criteria**: AQE settings configured.
-
-#### Task 3.2: Broadcast Joins
-1. Open `05-Day6-Managing-Shuffles-and-Joins.ipynb`
-2. Create small and large tables
-3. Force broadcast join and observe performance
-
-```python
-# Hint for broadcast
-df1.join(df2.hint("broadcast"), "join_column")
-```
-
-**Success Criteria**: Join uses broadcast strategy.
-
-#### Task 3.3: Storage Optimization
-1. Open `03-Day6-Optimizing-Storage-and-Compute.ipynb`
-2. Analyze storage costs and optimization strategies
-
-**Success Criteria**: Understanding of storage optimization concepts.
-
-## Validation and Success Criteria
-
-### Overall Success Criteria
-- All notebooks run without critical errors
-- Time travel queries return correct historical data
-- OPTIMIZE commands complete successfully
-- Constraints prevent invalid data insertion
-- Performance optimizations show measurable improvements
-
-### Common Issues
-- **Path Errors**: Ensure STUDENT_ID is correctly set
-- **Permission Errors**: Check Azure storage access
-- **Version Errors**: Verify available versions with DESCRIBE HISTORY
-- **Constraint Errors**: Drop existing constraints before re-adding
-
-### Performance Validation
-- Compare query execution times before/after optimization
-- Check file counts using `DESCRIBE DETAIL`
-- Monitor cluster metrics during optimization operations
-
-## Additional Resources
-- [Delta Time Travel Documentation](https://docs.databricks.com/delta/delta-time-travel.html)
-- [Delta Optimize Guide](https://docs.databricks.com/delta/delta-optimize.html)
-- [Delta Constraints](https://docs.databricks.com/delta/delta-constraints.html)
+- [Delta time travel](https://docs.databricks.com/delta/delta-time-travel.html)
+- [OPTIMIZE](https://docs.databricks.com/delta/delta-optimize.html)
+- [Z-order](https://docs.databricks.com/delta/data-skipping.html#z-ordering-for-lakehouse-queries)
+- [Liquid clustering](https://docs.databricks.com/delta/clustering.html)

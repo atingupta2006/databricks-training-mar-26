@@ -342,6 +342,8 @@ AS SELECT * FROM sales_silver
 
 ## Day 6 — Delta Advanced Features (4 Hours)
 
+**Hands-on:** `hands-on/day-06/` — notebooks **01** and **02** for items 17–18 below; details in that folder’s `README.md`.
+
 ### 17. Time Travel & Table History (1.5 hours)
 
 - Transaction history
@@ -369,6 +371,8 @@ AS SELECT * FROM sales_silver
 ---
 
 ## Day 7 — Streaming & Delta Live Tables (4 Hours)
+
+**Hands-on:** `hands-on/day-07/` — `README.md` and `labs.md` for items 19–20 (streaming, then DLT). Add notebooks there when you export them from the workspace.
 
 ### 19. Structured Streaming with Delta (2.5 hours)
 

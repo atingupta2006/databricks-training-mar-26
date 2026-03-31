@@ -40,6 +40,10 @@ All lesson notebooks that read or write **ADLS Gen2** use the **same pattern**:
 
 **Day 5** hands-on folder: **`hands-on/day-05/`** (extended Delta Lake on ABFS; regenerate: **`python internal/build_day05_notebooks.py`**).
 
+**Day 6** hands-on folder: **`hands-on/day-06/`** — items 17–18: notebooks **`01`**, **`02`**; optional **`03-Day6-Optional-5min-Teaser.ipynb`**; older material in **`notebooks/_archive/`**. See **`hands-on/day-06/README.md`**.
+
+**Day 7** hands-on folder: **`hands-on/day-07/`** — streaming & DLT (**topics 19–20**). See **`README.md`** and **`labs.md`** there; add workspace notebooks under `day-07/notebooks/` when you publish them.
+
 ---
 
 Course maintainers: see **`docs/README.md`** (optional local workflows are not committed; `.local-maintainer/` is gitignored).
