@@ -372,7 +372,7 @@ AS SELECT * FROM sales_silver
 
 ## Day 7 — Streaming & Delta Live Tables (4 Hours)
 
-**Hands-on:** `hands-on/day-07/` — `README.md` and `labs.md` for items 19–20 (streaming, then DLT). Add notebooks there when you export them from the workspace.
+**Hands-on:** `hands-on/day-07/` — `README.md`, `labs.md`, and notebooks `01-Day7-Structured-Streaming-Delta.ipynb` / `02-Day7-Delta-Live-Tables.ipynb` under `hands-on/day-07/notebooks/` (item 19 then 20).
 
 ### 19. Structured Streaming with Delta (2.5 hours)
 
@@ -410,6 +410,8 @@ ON VIOLATION DROP ROW
 
 ## Day 8 — Workflows & Production Pipelines (4 Hours)
 
+**Hands-on:** `hands-on/day-08/` — `README.md`, `labs.md`, and notebooks `01-Day8-Databricks-Workflows-Jobs.ipynb` / `02-Day8-Medallion-MultiTask-Workflow.ipynb` under `hands-on/day-08/notebooks/` (item 21 then 22).
+
 ### 21. Databricks Workflows (2 hours)
 
 **Jobs concepts**
@@ -435,6 +437,8 @@ ON VIOLATION DROP ROW
 ---
 
 ## Day 9 — Monitoring, SQL & Platform Integration (4 Hours)
+
+**Hands-on:** `hands-on/day-09/` — `README.md`, `labs.md`, and notebooks `01-Day9-Monitoring-Automation-System-Tables.ipynb`, `02-Day9-Databricks-SQL-Warehouses-Dashboards.ipynb`, plus supplement `03-Day9-Extras-Course-Review-and-Extensions.ipynb` when the schedule allows.
 
 ### 23. Monitoring & Automation (1.5 hours)
 
