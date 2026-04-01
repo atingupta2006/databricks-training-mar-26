@@ -2,7 +2,7 @@
 
 Follows items **19** and **20** in the course outline. Part A before Part B.
 
-**Notebooks:** [01-Day7-Structured-Streaming-Delta.ipynb](notebooks/01-Day7-Structured-Streaming-Delta.ipynb) (Part A), [02-Day7-Delta-Live-Tables.ipynb](notebooks/02-Day7-Delta-Live-Tables.ipynb) (Part B).
+**Notebooks:** [01-Day7-Structured-Streaming-Delta.ipynb](notebooks/01-Day7-Structured-Streaming-Delta.ipynb) (Part A). Part B: [02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb](notebooks/02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb) (guide), then pipeline libraries [03-Day7-DLT-Bronze-Layer.ipynb](notebooks/03-Day7-DLT-Bronze-Layer.ipynb), [04-Day7-DLT-Silver-Layer.ipynb](notebooks/04-Day7-DLT-Silver-Layer.ipynb), [05-Day7-DLT-Gold-Layer.ipynb](notebooks/05-Day7-DLT-Gold-Layer.ipynb).
 
 ---
 
@@ -42,19 +42,25 @@ If you have a directory of files on ABFS, a minimal Auto Loader pattern is:
 
 ### Objective
 
-Run a DLT-style pipeline: declarative layers, live tables, expectations, and triggered vs continuous runs.
+Run a DLT pipeline split by medallion layer: bronze (`03`), silver (`04`), gold (`05`), with UI setup and troubleshooting documented in `02`.
 
 ### Tasks
 
-1. **Pipeline** — Create a DLT pipeline from notebook `02` (target schema per instructor).
+1. **Read the guide** — On an interactive cluster, open `02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb`, run the prerequisite cell, and read the UI and troubleshooting sections.
 
-2. **LIVE tables** — Bronze (read Delta path), silver (view), gold (materialized). In SQL pipelines you would declare `CREATE LIVE TABLE` / `CREATE STREAMING LIVE TABLE`; in Python, `@dlt.table` with batch `spark.read` or `readStream` maps to those concepts (see notebook markdown).
+2. **Create one pipeline** — **Workflows → Pipelines → Create pipeline**. Add **three** notebook libraries: `03-Day7-DLT-Bronze-Layer.ipynb`, `04-Day7-DLT-Silver-Layer.ipynb`, `05-Day7-DLT-Gold-Layer.ipynb`. Set **target schema** (catalog + schema) per instructor.
 
-3. **Expectations** — Notebook `02` uses `@dlt.expect_or_drop` to mirror `ON VIOLATION DROP ROW` from the course SQL example.
+3. **Bronze** — Notebook `03` defines `bronze_flights` (`@dlt.table`) reading Day 5 Delta at `P_BASIC`.
 
-4. **Triggered vs continuous** — In the pipeline UI: run **Triggered** for class demos (full refresh / scheduled); try **Continuous** only if your workspace policy allows and you need near real-time (higher compute use).
+4. **Silver** — Notebook `04` defines `silver_flights` (`@dlt.view`) with `dlt.read("bronze_flights")` and a null filter on `count`.
 
-5. **Short demo** — Show pipeline run, lineage/expectations in the DLT UI.
+5. **Gold** — Notebook `05` defines `gold_flights` with `@dlt.expect_or_drop` (drop row policy, same idea as SQL `ON VIOLATION DROP ROW`).
+
+6. **Run and verify** — **Start** the pipeline; open **Lineage**; confirm tables in the target schema; if something fails, use the troubleshooting table in `02` and **Events** in the UI.
+
+7. **Triggered vs continuous** — Keep **Triggered** for this lab; use **Continuous** only if the instructor enables it and you are using streaming sources.
+
+8. **Demo** — Walk through **Full refresh** vs incremental **Refresh** when the instructor asks (full refresh is slower but clears stale materialized state after logic changes).
 
 ---
 

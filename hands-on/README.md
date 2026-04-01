@@ -42,7 +42,7 @@ All lesson notebooks that read or write **ADLS Gen2** use the **same pattern**:
 
 **Day 6** hands-on folder: **`hands-on/day-06/`** — items 17–18: notebooks **`01`**, **`02`**; optional **`03-Day6-Optional-5min-Teaser.ipynb`**; older material in **`notebooks/_archive/`**. See **`hands-on/day-06/README.md`**.
 
-**Day 7** hands-on folder: **`hands-on/day-07/`** — streaming & DLT (**topics 19–20**). See **`README.md`**, **`labs.md`**, and notebooks **`01-Day7-Structured-Streaming-Delta.ipynb`** / **`02-Day7-Delta-Live-Tables.ipynb`** under `day-07/notebooks/`.
+**Day 7** hands-on folder: **`hands-on/day-07/`** — streaming & DLT (**topics 19–20**). See **`README.md`**, **`labs.md`**, **`01-Day7-Structured-Streaming-Delta.ipynb`**, **`02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb`**, and DLT layer notebooks **`03`–`05`** under `day-07/notebooks/`.
 
 **Day 8** hands-on folder: **`hands-on/day-08/`** — Workflows (**topics 21–22**). See **`README.md`**, **`labs.md`**, and notebooks **`01-Day8-Databricks-Workflows-Jobs.ipynb`** / **`02-Day8-Medallion-MultiTask-Workflow.ipynb`** under `day-08/notebooks/`.
 

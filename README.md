@@ -372,7 +372,7 @@ AS SELECT * FROM sales_silver
 
 ## Day 7 — Streaming & Delta Live Tables (4 Hours)
 
-**Hands-on:** `hands-on/day-07/` — `README.md`, `labs.md`, and notebooks `01-Day7-Structured-Streaming-Delta.ipynb` / `02-Day7-Delta-Live-Tables.ipynb` under `hands-on/day-07/notebooks/` (item 19 then 20).
+**Hands-on:** `hands-on/day-07/` — `README.md`, `labs.md`, notebook `01-Day7-Structured-Streaming-Delta.ipynb` (item 19), then `02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb` plus DLT pipeline libraries `03-Day7-DLT-Bronze-Layer.ipynb`, `04-Day7-DLT-Silver-Layer.ipynb`, `05-Day7-DLT-Gold-Layer.ipynb` (item 20).
 
 ### 19. Structured Streaming with Delta (2.5 hours)
 
