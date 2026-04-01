@@ -12,6 +12,12 @@
 | 24 | Databricks SQL | ~1.5 h | SQL warehouses (Serverless / Pro), auto-stop, dashboards & alerts |
 | — | Supplement | as time allows | **`03-*-Extras-*`**: full-course recap (many cells) |
 
+## Suggested order (student flow)
+
+1. **`01`** on a cluster (item 23) — run top to bottom; use the **Workflows** UI when markdown directs you there.  
+2. **`02`** on a cluster (item 24) — run cluster cells, then complete **SQL** / **warehouse** / **dashboard** steps in the browser in the order given in the notebook.  
+3. **`03`** only if time remains — read its **Student flow** intro, then run top to bottom or by day section.
+
 ## Path convention (same as Days 5–8)
 
 - `BASE_PATH`, `DAY5`, `P_BASIC`, `STUDENT_ID` — identical pattern.  
@@ -29,7 +35,7 @@
 ## Prerequisites
 
 - **Day 5** data on ABFS (`P_BASIC`, `2010-summary.csv` as in earlier notebooks).  
-- **Day 8** optional: multi-task pipeline Gold path for cross-reads in **01** and **03**.  
+- **Day 8** optional: medallion **Gold** path (`day08-.../medallion/gold_by_destination`) after job **`03`–`05`** for cross-reads in **01** and **03**.  
 - Entitlements for **`system.*`** queries vary; notebooks use **try/except** like Day 4.
 
 ## Outcomes

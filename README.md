@@ -410,7 +410,7 @@ ON VIOLATION DROP ROW
 
 ## Day 8 — Workflows & Production Pipelines (4 Hours)
 
-**Hands-on:** `hands-on/day-08/` — `README.md`, `labs.md`, and notebooks `01-Day8-Databricks-Workflows-Jobs.ipynb` / `02-Day8-Medallion-MultiTask-Workflow.ipynb` under `hands-on/day-08/notebooks/` (item 21 then 22).
+**Hands-on:** `hands-on/day-08/` — `README.md`, `labs.md`, notebook `01-Day8-Databricks-Workflows-Jobs.ipynb` (item 21), then `02-Day8-Medallion-Guide-and-Student-Flow.ipynb` with task notebooks `03`–`05` and optional `06` (item 22).
 
 ### 21. Databricks Workflows (2 hours)
 

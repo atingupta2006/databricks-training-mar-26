@@ -44,7 +44,7 @@ All lesson notebooks that read or write **ADLS Gen2** use the **same pattern**:
 
 **Day 7** hands-on folder: **`hands-on/day-07/`** — streaming & DLT (**topics 19–20**). See **`README.md`**, **`labs.md`**, **`01-Day7-Structured-Streaming-Delta.ipynb`**, **`02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb`**, and DLT layer notebooks **`03`–`05`** under `day-07/notebooks/`.
 
-**Day 8** hands-on folder: **`hands-on/day-08/`** — Workflows (**topics 21–22**). See **`README.md`**, **`labs.md`**, and notebooks **`01-Day8-Databricks-Workflows-Jobs.ipynb`** / **`02-Day8-Medallion-MultiTask-Workflow.ipynb`** under `day-08/notebooks/`.
+**Day 8** hands-on folder: **`hands-on/day-08/`** — Workflows (**topics 21–22**). See **`README.md`**, **`labs.md`**, **`01-Day8-Databricks-Workflows-Jobs.ipynb`**, medallion guide **`02-Day8-Medallion-Guide-and-Student-Flow.ipynb`**, task notebooks **`03`–`05`**, optional **`06`**, under `day-08/notebooks/`.
 
 **Day 9** hands-on folder: **`hands-on/day-09/`** — Monitoring & SQL (**topics 23–24**). See **`README.md`**, **`labs.md`**, **`01-Day9-Monitoring-Automation-System-Tables.ipynb`**, **`02-Day9-Databricks-SQL-Warehouses-Dashboards.ipynb`**, and supplement **`03-Day9-Extras-Course-Review-and-Extensions.ipynb`** under `day-09/notebooks/` when time allows.
 

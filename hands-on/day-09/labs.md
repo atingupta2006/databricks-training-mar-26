@@ -1,6 +1,6 @@
 # Day 09 — Monitoring, SQL & Platform Integration — Labs
 
-Follows items **23** and **24**; use notebook **03** only if time remains.
+Follows items **23** and **24**; use notebook **03** only if time remains. Each notebook **`01`–`03`** includes a **Student flow** section at the top — follow that order to avoid UI/cluster mix-ups.
 
 **Notebooks:**  
 [01-Day9-Monitoring-Automation-System-Tables.ipynb](notebooks/01-Day9-Monitoring-Automation-System-Tables.ipynb),  

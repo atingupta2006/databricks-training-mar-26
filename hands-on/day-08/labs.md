@@ -2,7 +2,7 @@
 
 Follows items **21** and **22** in the course outline.
 
-**Notebooks:** [01-Day8-Databricks-Workflows-Jobs.ipynb](notebooks/01-Day8-Databricks-Workflows-Jobs.ipynb), [02-Day8-Medallion-MultiTask-Workflow.ipynb](notebooks/02-Day8-Medallion-MultiTask-Workflow.ipynb). Figures are Mermaid and ASCII; Mermaid needs to be enabled in the workspace to render.
+**Notebooks:** [01-Day8-Databricks-Workflows-Jobs.ipynb](notebooks/01-Day8-Databricks-Workflows-Jobs.ipynb); item 22: [02-Day8-Medallion-Guide-and-Student-Flow.ipynb](notebooks/02-Day8-Medallion-Guide-and-Student-Flow.ipynb), [03-Day8-Medallion-Bronze-Task.ipynb](notebooks/03-Day8-Medallion-Bronze-Task.ipynb), [04-Day8-Medallion-Silver-Task.ipynb](notebooks/04-Day8-Medallion-Silver-Task.ipynb), [05-Day8-Medallion-Gold-Task.ipynb](notebooks/05-Day8-Medallion-Gold-Task.ipynb), optional [06-Day8-Medallion-PostRun-Checks.ipynb](notebooks/06-Day8-Medallion-PostRun-Checks.ipynb). Each notebook’s **Student flow** section states the order to follow.
 
 ---
 
@@ -29,14 +29,16 @@ Understand **tasks**, **runs**, and **compute**; create a **job** that runs note
 
 ### Tasks
 
-1. Run `02` interactively with widget **`pipeline_stage` = `all`**; verify bronze, silver, gold Delta paths under `day08-{STUDENT_ID}/medallion/`.
-2. Create a **new job** with **three** notebook tasks on the **same** notebook:
-   - `bronze` — parameter `pipeline_stage` = `bronze`
-   - `silver` — depends on `bronze` — `pipeline_stage` = `silver`
-   - `gold` — depends on `silver` — `pipeline_stage` = `gold`
-3. **Run now**; confirm order in the DAG.
-4. **Error handling:** in Job settings, set **Max retries** (e.g. 1–2) on a task; discuss **timeout** and **notifications**.
-5. **Scheduling:** add a **schedule** (e.g. daily cron) or describe **file arrival** / **trigger** if your workspace exposes it — then **pause** the schedule for the training tenant.
+1. Open **`02-Day8-Medallion-Guide-and-Student-Flow.ipynb`**; run the prerequisite cell; read the **Student flow** table.
+2. On a cluster, run **`03`**, then **`04`**, then **`05`** top to bottom once (sanity check). Confirm Delta paths under `day08-{STUDENT_ID}/medallion/`.
+3. Create a **new job** with **three** notebook tasks on **three different** notebooks:
+   - Task **`bronze`** → file **`03-Day8-Medallion-Bronze-Task.ipynb`** (no dependency)
+   - Task **`silver`** → **`04-Day8-Medallion-Silver-Task.ipynb`** — **Depends on** `bronze`
+   - Task **`gold`** → **`05-Day8-Medallion-Gold-Task.ipynb`** — **Depends on** `silver`
+4. **Run now**; confirm order in the DAG matches bronze → silver → gold.
+5. Optionally run **`06-Day8-Medallion-PostRun-Checks.ipynb`** after a successful job.
+6. **Error handling:** in Job settings, set **Max retries** (e.g. 1–2); discuss **timeout** and **notifications**.
+7. **Scheduling:** add a **schedule** if the instructor asks — then **pause** it for shared training workspaces.
 
 ---
 
