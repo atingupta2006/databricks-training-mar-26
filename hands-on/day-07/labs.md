@@ -48,7 +48,7 @@ Run a DLT pipeline split by medallion layer: bronze (`03`), silver (`04`), gold 
 
 1. **Read the guide** — On an interactive cluster, open `02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb`, run the prerequisite cell, and read the UI and troubleshooting sections.
 
-2. **Create one pipeline** — **Workflows → Pipelines → Create pipeline**. Add **three** notebook libraries: `03-Day7-DLT-Bronze-Layer.ipynb`, `04-Day7-DLT-Silver-Layer.ipynb`, `05-Day7-DLT-Gold-Layer.ipynb`. Set **target schema** (catalog + schema) per instructor.
+2. **Create one pipeline** — **Workflows → Pipelines → Create pipeline**. Add **three** libraries: either notebooks `03-Day7-DLT-Bronze-Layer.ipynb`, `04-Day7-DLT-Silver-Layer.ipynb`, `05-Day7-DLT-Gold-Layer.ipynb`, **or** Python files `pipelines/dlt_bronze_flights.py`, `pipelines/dlt_silver_flights.py`, `pipelines/dlt_gold_flights.py`. Set **target schema** (catalog + schema) per instructor. For `.py`, optional config key `bronze.source.delta.path` overrides the default source Delta path.
 
 3. **Bronze** — Notebook `03` defines `bronze_flights` (`@dlt.table`) reading Day 5 Delta at `P_BASIC`.
 

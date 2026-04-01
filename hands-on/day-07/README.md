@@ -26,11 +26,12 @@ Do item **19** before item **20**.
 | **20** `LIVE TABLE` / `STREAMING LIVE TABLE` | Notebooks `03`–`05`: Python `@dlt.table` / `@dlt.view` (batch bronze); SQL `LIVE TABLE` / `STREAMING LIVE TABLE` referenced in `02` |
 | **20** Expectations (`EXPECT` … `ON VIOLATION DROP ROW`) | Notebook `05`: `@dlt.expect_or_drop`; SQL shape in `02` |
 | **20** Continuous vs triggered | Notebook `02` + `labs.md` (pipeline UI; class demos usually **triggered**) |
-| **20** Short demo | One DLT pipeline whose libraries are `03`, `04`, `05` (see `02` for UI steps) |
+| **20** Short demo | One DLT pipeline whose libraries are notebooks `03`–`05` **or** three `.py` modules under `pipelines/` (see `02` for UI steps) |
 
 ## Materials here
 
 - [labs.md](labs.md)
+- **DLT pipeline (Python modules, Lakeflow / DLT):** `hands-on/day-07/pipelines/` — attach all three to one pipeline: [`dlt_bronze_flights.py`](pipelines/dlt_bronze_flights.py), [`dlt_silver_flights.py`](pipelines/dlt_silver_flights.py), [`dlt_gold_flights.py`](pipelines/dlt_gold_flights.py) (same graph as notebooks `03`–`05`).
 - Notebooks under `hands-on/day-07/notebooks/`:
   - [01-Day7-Structured-Streaming-Delta.ipynb](notebooks/01-Day7-Structured-Streaming-Delta.ipynb) — item **19**
   - [02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb](notebooks/02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb) — item **20** (guide: UI, wiring libraries, troubleshooting)
