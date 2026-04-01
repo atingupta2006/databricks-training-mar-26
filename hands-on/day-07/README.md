@@ -1,65 +1,41 @@
-# Day 07 — Streaming & Delta Live Tables
+# Day 7 — Structured streaming & Lakeflow ETL
 
 ## Duration
 
-4 hours (items **19** and **20** in the course root `README.md`).
+Four hours (course outline items **19** and **20**). Complete item **19** before **20**.
 
-## Outline
+## What this day covers
 
-| Item | Subject | Time (guide) | Focus |
-|------|---------|--------------|--------|
-| 19 | Structured Streaming with Delta | ~2.5 h | Read/write streams, checkpoints, change data feed |
-| 20 | Delta Live Tables | ~1.5 h | Pipelines, `LIVE` / `STREAMING LIVE` tables, expectations, triggered vs continuous |
+**Item 19 — Streaming on Delta**  
+You use a single notebook to practice streaming reads and writes, checkpoints, and change data feed patterns against the shared lab storage layout.
 
-Do item **19** before item **20**.
+**Item 20 — Lakeflow ETL Pipelines**  
+You deploy a small medallion flow (bronze → silver → gold) as Python pipeline libraries. In the workspace you use the **Lakeflow Pipelines Editor** flow (**Add existing assets** to point at the repo files). Tables are published to **Unity Catalog** from the pipeline settings—not by hardcoding catalog or schema names in the files. Step-by-step UI options are in [pipelines/DEPLOY.md](pipelines/DEPLOY.md) (with a screenshot of the **Next step for your pipeline** screen).
 
-## Where syllabus items appear
+## Materials
 
-| Outline item | Where it is covered |
-|---------------|---------------------|
-| **19** Streaming read | Notebook `01`: `readStream` (rate source); optional Auto Loader pattern in `labs.md` |
-| **19** Streaming write | Notebook `01`: `writeStream` → Delta, `outputMode("append")` |
-| **19** Checkpointing | Notebook `01`: `checkpointLocation` under `day07-{STUDENT_ID}`; reuse + optional clean-up |
-| **19** Change Data Feed | Notebook `01`: `ALTER TABLE` enable CDF, `readChangeFeed`, optional `table_changes` |
-| **19** Hands-on: streaming ingestion pipeline | Notebook `01`: end-to-end micro-batch pipeline; file/Auto Loader called out in `labs.md` as optional extension |
-| **20** What is DLT / declarative pipelines | Notebook `02` (guide, interactive cluster) + `labs.md` Part B |
-| **20** `LIVE TABLE` / `STREAMING LIVE TABLE` | Notebooks `03`–`05`: Python `@dlt.table` / `@dlt.view` (batch bronze); SQL `LIVE TABLE` / `STREAMING LIVE TABLE` referenced in `02` |
-| **20** Expectations (`EXPECT` … `ON VIOLATION DROP ROW`) | Notebook `05`: `@dlt.expect_or_drop`; SQL shape in `02` |
-| **20** Continuous vs triggered | Notebook `02` + `labs.md` (pipeline UI; class demos usually **triggered**) |
-| **20** Short demo | One DLT pipeline whose libraries are notebooks `03`–`05` **or** three `.py` modules under `pipelines/` (see `02` for UI steps) |
-
-## Materials here
-
-- [labs.md](labs.md)
-- **DLT pipeline (Python modules, Lakeflow / DLT):** `hands-on/day-07/pipelines/` — attach all three to one pipeline: [`dlt_bronze_flights.py`](pipelines/dlt_bronze_flights.py), [`dlt_silver_flights.py`](pipelines/dlt_silver_flights.py), [`dlt_gold_flights.py`](pipelines/dlt_gold_flights.py) (same graph as notebooks `03`–`05`).
-- Notebooks under `hands-on/day-07/notebooks/`:
-  - [01-Day7-Structured-Streaming-Delta.ipynb](notebooks/01-Day7-Structured-Streaming-Delta.ipynb) — item **19**
-  - [02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb](notebooks/02-Day7-DLT-Guide-UI-and-Troubleshooting.ipynb) — item **20** (guide: UI, wiring libraries, troubleshooting)
-  - [03-Day7-DLT-Bronze-Layer.ipynb](notebooks/03-Day7-DLT-Bronze-Layer.ipynb) — item **20** (bronze pipeline library)
-  - [04-Day7-DLT-Silver-Layer.ipynb](notebooks/04-Day7-DLT-Silver-Layer.ipynb) — item **20** (silver pipeline library)
-  - [05-Day7-DLT-Gold-Layer.ipynb](notebooks/05-Day7-DLT-Gold-Layer.ipynb) — item **20** (gold pipeline library)
+| Piece | Location |
+|-------|-----------|
+| Labs checklist | [labs.md](labs.md) |
+| Item 19 notebook | [notebooks/01-Day7-Structured-Streaming-Delta.ipynb](notebooks/01-Day7-Structured-Streaming-Delta.ipynb) |
+| Item 20 pipeline code | [pipelines/lakeflow_bronze_flights.py](pipelines/lakeflow_bronze_flights.py), [pipelines/lakeflow_silver_flights.py](pipelines/lakeflow_silver_flights.py), [pipelines/lakeflow_gold_flights.py](pipelines/lakeflow_gold_flights.py) |
+| Optional file ingest | [pipelines/lakeflow_bronze_cloudfiles_ingestion.py](pipelines/lakeflow_bronze_cloudfiles_ingestion.py) |
+| How to create & run the pipeline | [pipelines/DEPLOY.md](pipelines/DEPLOY.md) |
 
 ## Prerequisites
 
-- Earlier days through Delta on ABFS (paths as in Days 4–6).
-- Cluster can write checkpoint locations you choose.
-- DLT layer notebooks (**03–05**) run inside a **Delta Live Tables pipeline** (not as a classic Job-only notebook run on demand for publishing tables).
+- Working Delta data from earlier days (same `BASE_PATH` / Day 5 flight summary path used elsewhere in the course).
+- Workspace permission to create an **ETL Pipeline** and write to a UC schema your instructor assigns.
 
 ## Outcomes
 
-Learners should be able to:
+After this day you should be able to run the streaming lab end-to-end, attach the three default pipeline libraries, set **Triggered** mode and a UC target, and confirm **lineage** and **expectations** for the sample medallion tables.
 
-- Run a streaming read/write to Delta with a durable checkpoint.
-- Explain why CDF needs a `startingVersion` after the first pre-CDF write, and read the change feed.
-- Create a DLT pipeline that loads **03–05** as libraries, producing bronze → silver → gold with a **drop row** expectation on gold.
-- Choose **triggered** vs **continuous** in the pipeline UI and know when each is appropriate.
+## Optional local references
 
-## Extra reference material (local)
+Extra notebooks or markdown under a separate `databricks` bundle, if your instructor points you there.
 
-Optional deeper examples (streaming / DLT concepts) may be copied from the separate bundle:  
-`C:\25-Trainings\2-Confirmed\260317-Vinsys-Databricks\databricks`  
-(e.g. Apache Spark / Tata / DE associate labs under `**/Labs/*streaming*`, and `**/Working_with_Delta_Live_Tables.md`). Keep anything added on-topic for items 19–20.
+## Related hands-on days
 
-## Related days
-
-Workflows and medallion jobs: `hands-on/day-08/`. Monitoring, SQL, and dashboards: `hands-on/day-09/`.
+- **Day 8** — Jobs and multi-task workflows.  
+- **Day 9** — Monitoring and SQL warehouses.

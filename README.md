@@ -14,7 +14,7 @@ A structured 9-day Databricks training covering Lakehouse architecture, Spark, M
 | 4 | Unity Catalog Governance | 5 hours |
 | 5 | Delta Lake Fundamentals | 4 hours |
 | 6 | Delta Advanced Features | 4 hours |
-| 7 | Streaming & Delta Live Tables | 4 hours |
+| 7 | Streaming & Lakeflow ETL | 4 hours |
 | 8 | Workflows & Production Pipelines | 4 hours |
 | 9 | Monitoring, SQL & Platform Integration | 4 hours |
 
@@ -370,9 +370,9 @@ AS SELECT * FROM sales_silver
 
 ---
 
-## Day 7 — Streaming & Delta Live Tables (4 Hours)
+## Day 7 — Streaming & Lakeflow ETL (4 Hours)
 
-**Hands-on:** `hands-on/day-07/` — `README.md`, `labs.md`, notebook `01-Day7-Structured-Streaming-Delta.ipynb` (item 19), then DLT item 20 via either notebooks `02` (guide) + `03`–`05` or `pipelines/dlt_bronze_flights.py`, `dlt_silver_flights.py`, `dlt_gold_flights.py`.
+**Hands-on:** `hands-on/day-07/` — `README.md`, `labs.md`, notebook `01-Day7-Structured-Streaming-Delta.ipynb` (item 19), then item 20 via `hands-on/day-07/pipelines/` (`lakeflow_bronze_flights.py`, `lakeflow_silver_flights.py`, `lakeflow_gold_flights.py`) and [DEPLOY.md](hands-on/day-07/pipelines/DEPLOY.md).
 
 ### 19. Structured Streaming with Delta (2.5 hours)
 
@@ -387,24 +387,23 @@ AS SELECT * FROM sales_silver
 
 ---
 
-### 20. Delta Live Tables (DLT) (1.5 hours)
+### 20. Lakeflow ETL Pipelines (1.5 hours)
 
-**What is DLT**
+**Declarative ETL**
 
-**Declarative pipelines**
-- LIVE TABLE
-- STREAMING LIVE TABLE
+- ETL Pipeline in the workspace (**Lakeflow Pipelines Editor**, **Add existing assets** for the three `.py` files), Unity Catalog as pipeline storage; see [DEPLOY.md](hands-on/day-07/pipelines/DEPLOY.md) for the “Next step for your pipeline” options
+- Tables and views with expectations (log, drop row, or fail update)
 
-**Expectations**
+**Expectations (SQL-style reference)**
 ```sql
 CONSTRAINT valid_amount
 EXPECT (amount > 0)
 ON VIOLATION DROP ROW
 ```
 
-**Continuous vs Triggered mode**
+**Triggered vs Continuous**
 
-**Short demo**
+**Hands-on:** `lakeflow_bronze_flights.py`, `lakeflow_silver_flights.py`, `lakeflow_gold_flights.py`, and [DEPLOY.md](hands-on/day-07/pipelines/DEPLOY.md)
 
 ---
 

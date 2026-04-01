@@ -218,7 +218,7 @@ Map a **URL prefix** (e.g. `abfss://container@account.dfs.core.windows.net/data/
 
 # 14. Data Lineage
 
-* **Automatic lineage** for many Databricks operations (jobs, notebooks writing Delta, DLT pipelines).
+* **Automatic lineage** for many Databricks operations (jobs, notebooks writing Delta, ETL pipelines).
 * **Catalog Explorer** → select an object → **Lineage** tab.
 * **Column lineage** — where supported, helps when renaming or dropping columns.
 
